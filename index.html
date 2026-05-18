@@ -63,7 +63,6 @@ h1 {
   color: #546e7a;
   font-size: 0.95rem;
 }
-
 .check-list {
   display: flex;
   flex-direction: column;
@@ -123,7 +122,6 @@ h1 {
   border-color: #66bb6a;
   color: white;
 }
-
 .progress-box {
   background: #fff8e1;
   border-radius: 16px;
@@ -154,7 +152,6 @@ h1 {
   font-size: 0.85rem;
   margin-top: 8px;
 }
-
 .tip-box {
   background: #f3e5f5;
   border-radius: 14px;
@@ -168,7 +165,6 @@ h1 {
 .tip-box::before {
   content: '💡 ';
 }
-
 .stamp {
   display: none;
   margin-top: 20px;
@@ -188,7 +184,6 @@ h1 {
   font-weight: bold;
   transform: rotate(-5deg);
 }
-
 .sleep-warning {
   display: none;
   position: fixed;
@@ -238,12 +233,10 @@ h1 {
   background: #3f51b5;
   transform: translateY(-2px);
 }
-
 @keyframes popIn {
   0% { transform: scale(0.8); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
-
 @media (max-width: 480px) {
   .card { padding: 28px 20px; }
   h1 { font-size: 1.4rem; }
@@ -308,7 +301,6 @@ h1 {
   </div>
 </div>
 
-<!-- 熬夜弹窗 -->
 <div class="sleep-warning" id="sleepWarning">
   <div class="sleep-card">
     <div class="big-emoji">🌙</div>
@@ -319,20 +311,17 @@ h1 {
 </div>
 
 <script>
-// 显示日期
 const now = new Date();
 const month = now.getMonth() + 1;
 const day = now.getDate();
 const weekdays = ['日','一','二','三','四','五','六'];
 document.getElementById('dateBox').innerText = `${month}月${day}日 周${weekdays[now.getDay()]} · 健康打卡`;
 
-// 打卡切换
 function toggleCheck(el) {
   el.classList.toggle('done');
   updateProgress();
 }
 
-// 更新进度
 function updateProgress() {
   const items = document.querySelectorAll('.check-item');
   const done = document.querySelectorAll('.check-item.done');
@@ -349,7 +338,6 @@ function updateProgress() {
   ];
   document.getElementById('progressText').innerText = texts[done.length];
 
-  // 全部完成显示印章
   const stamp = document.getElementById('stamp');
   if (done.length === items.length) {
     stamp.style.display = 'block';
@@ -358,7 +346,6 @@ function updateProgress() {
   }
 }
 
-// 每日小贴士
 const tips = [
   "多喝水能促进代谢，皮肤也会变好哦～",
   "饭后站立 15 分钟，比想象中有效",
@@ -374,7 +361,6 @@ const tips = [
 const tipIndex = (now.getFullYear() * 365 + now.getMonth() * 31 + now.getDate()) % tips.length;
 document.getElementById('tipBox').innerText = tips[tipIndex];
 
-// 熬夜检测：晚上 11 点后弹窗
 const hour = now.getHours();
 if (hour >= 23 || hour < 5) {
   setTimeout(() => {
